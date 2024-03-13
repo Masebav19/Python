@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    <div>
+        <h1>Lista de acciones Modbus</h1>
+        <h2>Escoja el tipo de acción Modbus</h2>
+    </div>
+    <div>
+        <form action="{{ url_for("main") }}" method="post">
+            <input list="mb_action" name="mb_action">
+            <datalist id="mb_action">
+                <option value="Write Single coil">
+                <option value="Write Multiple coils">
+                <option value="Write single register">
+                <option value="Write multiple register">
+                <option value="Read Contacts">
+                <option value="Read Registers">
+            </datalist>
+            <button type="submit">Escoger</button>
+        </form>
+    </div>
+</body>
+</html>

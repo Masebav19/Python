@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ data.title }}</title>
+</head>
+<body>
+    <div>
+        <form action= "{{ url_for(data.function_name) }}" method="post">
+            <label for="direccion_host">Dirección IP</label>
+            <input type="text" name="ip_dir" id="direccion_host" placeholder="direccion_host">
+    
+            <label for="direccion_Modbus">{{ data.add_label }}</label>
+            <input type="number" name="Mb_Add" id="direccion_Modbus" placeholder="direccion_Modbus">
+    
+            <label for="Valor_Modbus">{{ data.value_label }}</label>
+            <input type="text" name="Mb_val" id="Valor_Modbus" placeholder="{{ data.value_label }}">
+    
+            <button type="submit">Escribir</button>
+        </form>
+    </div>
+    <div>
+        {% if data.state %}
+            {% if (data.function_name == "input") or (data.function_name == "contact") %}
+                <h1 id="Mensaje">Datos obtenidos correctamente</h1>
+            {% else %}
+                <h1 id="Mensaje">Datos insertados correctamente</h1>
+            {% endif %}
+            <script>
+                setTimeout(()=>{
+                    document.getElementById("Mensaje").innerHTML="Inserte los datos"
+                },2000);
+            </script>
+        {% else %}
+            <h1 id="Mensaje">Inserte los datos</h1>
+        {% endif %}
+    </div>
+    <div>
+        {% if data.data_mb %}
+            <table>
+                <tr>
+                    <th>Valor</th>
+                </tr>
+                {% for c in data.data_mb %}
+                <tr>
+                    <td>{{c}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+        {% endif %}
+    </div>
+
+    <div>
+        <form action="{{url_for("main")}}">
+            <button type="submit">Regresar</button>
+        </form>
+    </div>
+</body>
+</html>
