@@ -5,3 +5,5 @@ def str2array(string=""):
         return array
     else:
         return False
+
+
